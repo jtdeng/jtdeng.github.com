@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>JsonPath tests</title>
+<script src="http://jsonpath.googlecode.com/svn/trunk/src/js/jsonpath.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+	var o =  { "store": {
+    "book": [ 
+      { "category": "reference",
+        "author": "Nigel Rees",
+        "title": "Sayings of the Century",
+        "price": 8.95
+      },
+      { "category": "fiction",
+        "author": "Evelyn Waugh",
+        "title": "Sword of Honour",
+        "price": 12.99
+      },
+      { "category": "fiction",
+        "author": "Herman Melville",
+        "title": "Moby Dick",
+        "isbn": "0-553-21311-3",
+        "price": 8.99
+      },
+      { "category": "fiction",
+        "author": "J. R. R. Tolkien",
+        "title": "The Lord of the Rings",
+        "isbn": "0-395-19395-8",
+        "price": 22.99
+      }
+    ],
+    "bicycle": {
+      "color": "red",
+      "price": 19.95
+    }
+  }
+}
+
+    //res1 = jsonPath(o, "$..author").toJSONString(),
+    //res2 = jsonPath(o, "$..author", {resultType:"PATH"}).toJSONString();
+	//alert(res1)
+	
+$.ajaxSetup({ cache: false });
+
+$(document).ready(function() {
+	//$("#json_string").text(o);
+	
+	$("#run_btn").click(function(){
+		query = $("#query").val()
+		//alert(query)
+		res = jsonPath(o, query)
+		$("#result").val(JSON.stringify(res))
+	})
+
+});
+	
+</script>
+
+</head>
+<body>
+<pre id="json_string">
+{ "store": {
+    "book": [ 
+      { "category": "reference",
+        "author": "Nigel Rees",
+        "title": "Sayings of the Century",
+        "price": 8.95
+      },
+      { "category": "fiction",
+        "author": "Evelyn Waugh",
+        "title": "Sword of Honour",
+        "price": 12.99
+      },
+      { "category": "fiction",
+        "author": "Herman Melville",
+        "title": "Moby Dick",
+        "isbn": "0-553-21311-3",
+        "price": 8.99
+      },
+      { "category": "fiction",
+        "author": "J. R. R. Tolkien",
+        "title": "The Lord of the Rings",
+        "isbn": "0-395-19395-8",
+        "price": 22.99
+      }
+    ],
+    "bicycle": {
+      "color": "red",
+      "price": 19.95
+    }
+  }
+}
+
+</pre>
+<input style="width:600px;" type="text" id="query" value="$..author"></text>
+<input type="submit" id="run_btn" value="Run"><br>  
+<textarea id="result" cols="100" rows="10"></textarea>
+
+</body>
+</html>
